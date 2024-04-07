@@ -18,11 +18,15 @@ import { useForm } from "react-hook-form"
 import { Loader2 } from "lucide-react";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "../ui/form";
 import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation";
+
 
 const Login = () => {
     const [isLoading,setIsLoading] = useState(false)
 
     const { toast } = useToast()
+
+    const router = useRouter();
 
     const formSchema = z.object({
         code : z
@@ -36,16 +40,34 @@ const Login = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            code: "",
+            code: "f030ddd8-c4cf-44a0-9042-8ea9efd050ba",
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-        toast({
-            title: `Sucesso`,
-            description: `Dispositivo ${values.code} encontrado`,
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        setIsLoading(true)
+        fetch( `http://localhost:3001/dispositivos/${values.code}`)
+        .then(response => response.json())
+        .then(data => {
+         if(data.statusCode == 404){
+            toast({
+                title : "Erro!",
+                description : data.message
+            })
+         }else{
+            toast({
+                title : "Sucesso!",
+                description : `Dispositivo : ${data.id} encontrado!` 
+            })
+            router.push(`/device/${values.code}`);
+         }
+          
         })
+        .catch(error => {
+            console.log(error);
+        }
+        )
+        setIsLoading(false)
     }
 
     return ( 
