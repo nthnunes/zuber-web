@@ -21,12 +21,14 @@ const Device = async ({params} : deviceProps) => {
                     </CardHeader>
                 </Card>
             </Link>
-                <Card>
-                <CardHeader>
-                    <CardTitle>Consulte Corridas Ao Vivo</CardTitle>
-                    <CardDescription>Clique para ver as Corridas Ao Vivo</CardDescription>
-                </CardHeader>
-                </Card>
+                <Link  href={`/live-sprints/${params.slug}`}>
+                    <Card>
+                    <CardHeader>
+                        <CardTitle>Consulte Corridas Ao Vivo</CardTitle>
+                        <CardDescription>Clique para ver as Corridas Ao Vivo</CardDescription>
+                    </CardHeader>
+                    </Card>
+                </Link>
             </div>
         </section>
      );
