@@ -39,9 +39,7 @@ const Login = () => {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            code: "f030ddd8-c4cf-44a0-9042-8ea9efd050ba",
-        },
+        // defaultValues: { code: "ab6b1d79-8378-4bfe-a684-3ec9dae4c919" }
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
