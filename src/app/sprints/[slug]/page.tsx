@@ -38,21 +38,23 @@ export default async function Sprints({ params }: SprintsProps) {
         <div className="flex flex-col gap-4 w-full sm:w1/2 sm:flex-row mt-4">
           {sprints != "" ? (
             sprints.map((item: any) => (
-              <Card key={item.id}>
-                <CardHeader>
-                  <CardTitle>Corrida Id : {item.id}</CardTitle>
-                  <CardDescription>
-                    Clique para ver mais Informações
-                  </CardDescription>
-                  <CardContent className="p-0">
-                    <p>Dispositivo Id {item.deviceId}</p>
-                    <p>
-                      Iniciado em{" "}
-                      {format(new Date(item.date_start), "yyyy-MM-dd HH")}
-                    </p>
-                  </CardContent>
-                </CardHeader>
-              </Card>
+              <Link href={`/live-sprints/${item.id}`}>
+                <Card key={item.id}>
+                  <CardHeader>
+                    <CardTitle>Corrida Id : {item.id}</CardTitle>
+                    <CardDescription>
+                      Clique para ver mais Informações
+                    </CardDescription>
+                    <CardContent className="p-0">
+                      <p>Dispositivo Id {item.deviceId}</p>
+                      <p>
+                        Iniciado em{" "}
+                        {format(new Date(item.date_start), "yyyy-MM-dd HH")}
+                      </p>
+                    </CardContent>
+                  </CardHeader>
+                </Card>
+              </Link>
             ))
           ) : (
             <h1>Sem Corridas</h1>

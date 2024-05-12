@@ -57,7 +57,7 @@ const Login = () => {
                 title : "Sucesso!",
                 description : `Dispositivo : ${data.id} encontrado!` 
             })
-            router.push(`/device/${values.code}`);
+            router.push(`/sprints/${values.code}`);
          }
           
         })
