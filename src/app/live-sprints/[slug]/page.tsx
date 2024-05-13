@@ -31,7 +31,7 @@ export default function LiveSprints({ params }: LiveSprintsProps) {
       console.log("Conectado ao servidor WebSocket");
       newSocket.emit(
         "getSprintGeoLocations",
-        "9c973427-7171-4481-93e0-7f8fb388ba17"
+        params.slug
       );
     });
 
@@ -49,9 +49,9 @@ export default function LiveSprints({ params }: LiveSprintsProps) {
     };
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log(currentLocation);
-  }, [currentLocation]);
+  }, [currentLocation]); */
 
   return (
     <>

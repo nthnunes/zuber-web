@@ -16,7 +16,7 @@ interface SprintsProps {
   };
 }
 const getData = async (values: string) => {
-  const res = await fetch(`http://localhost:3001/corrida/${values}`);
+  const res = await fetch(`http://10.254.200.34:3001/corrida/${values}`);
   return res.json();
 };
 
@@ -26,7 +26,7 @@ export default async function Sprints({ params }: SprintsProps) {
     <>
       <Button className="absolute top-2.5 left-20 mt-[6px]">
         <Link
-          href={`/device/${params.slug}`}
+          href={`/`}
           className="flex items-center justify-center"
         >
           <ChevronLeft />
