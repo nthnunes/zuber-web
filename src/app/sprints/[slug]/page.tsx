@@ -29,7 +29,6 @@ export default async function Sprints({ params }: SprintsProps) {
           href={`/`}
           className="flex items-center justify-center"
         >
-          <ChevronLeft />
           Voltar
         </Link>
       </Button>

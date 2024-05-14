@@ -5,6 +5,7 @@ import { ChevronLeft } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import io, { Socket } from "socket.io-client";
+import { useRouter } from 'next/navigation';
 
 interface LiveSprintsProps {
   params: {
@@ -13,6 +14,9 @@ interface LiveSprintsProps {
 }
 
 export default function LiveSprints({ params }: LiveSprintsProps) {
+
+  const router = useRouter();
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBo3h39Vto7jTzZCPsosGIJLGA5QWsSOX4",
@@ -55,14 +59,8 @@ export default function LiveSprints({ params }: LiveSprintsProps) {
 
   return (
     <>
-      <Button className="absolute top-2.5 left-20 mt-[6px]">
-        <Link
-          href={`/device/${params.slug}`}
-          className="flex items-center justify-center"
-        >
-          <ChevronLeft size={24} />
-          Voltar
-        </Link>
+      <Button className="absolute top-2.5 left-20 mt-[6px]" onClick={() => router.back()}>
+        Voltar
       </Button>
       {isLoaded && (
         <GoogleMap
