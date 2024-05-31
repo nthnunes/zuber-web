@@ -1,15 +1,13 @@
-
+import { LogsTable, columns } from "./columns"
 import { db } from "@/lib/db";
+import { DataTable } from "./data-table";
 const Logs = async () => {
     const log = await db.logs.findMany({})
-    console.log(log);
-    
+
     return ( 
-        <section className="container mt-40 flex items-center justify-center">
-            {log.map((e)=>(
-                <p>{e.id}</p>
-            ))}
-        </section>
+        <div className="container mx-auto py-10">
+            <DataTable columns={columns} data={log} />
+        </div>
      );
 }
  
