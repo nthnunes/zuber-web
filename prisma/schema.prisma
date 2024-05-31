@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Device {
+  id         String   @id @default(uuid())
+  nome       String
+  created_at DateTime @default(now())
+  
+  sprints    Sprint[]
+
+  @@map("devices")
+}
+
+model Sprint {
+  id            String @id @default(uuid())
+  deviceId      String
+  date_start    DateTime @default(now())
+  date_finished DateTime?
+  device        Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  geolocation GeoLocation[]
+
+  @@map("sprints")
+}
+
+model GeoLocation {
+  id       Int      @id @default(autoincrement())
+  sprintId String
+  lat      Decimal
+  lon      Decimal
+  time     DateTime @default(now())
+  sprint   Sprint   @relation(fields: [sprintId], references: [id], onDelete: Cascade)
+
+  @@map("geolocation")
+}
+
+model Logs {
+  id       Int      @id @default(autoincrement())
+  date     DateTime @default(now())
+  ip       String
+  method   String
+  route    String
+  status   Int
+  data     Json?
+
+  @@map("logs")
+}
