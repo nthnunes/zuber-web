@@ -36,6 +36,11 @@ import {
 import { Button } from "@/components/ui/button"
 import React, { useState } from "react"
 import { Input } from "@/components/ui/input"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils"
+import { CalendarIcon } from "lucide-react"
+import { format } from "date-fns"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -72,13 +77,12 @@ export function DataTable<TData, TValue>({
     },
   })
  
-  const handleFilter = () => {
-    console.log('Filtro acionado:',status);
-    // Aqui você pode adicionar lógica para filtrar dados, atualizar o estado, etc.
-  };
+  const [date, setDate] = React.useState<Date>()
+  const handleSelectDate = (value : any) => {
+    setDate(value)
+    table.getColumn('dataFormatada')?.setFilterValue(format(new Date(value), 'dd/MM/yyyy'))
+  }
   const handleSelectChange = (value : string) => {
-    // setStatus('200');
-    // console.log((old: [number, number]) => [value, old?.[1]]);
     table.getColumn('status')?.setFilterValue((old: [number, number]) => [value,value])
   };
   return (
@@ -103,6 +107,28 @@ export function DataTable<TData, TValue>({
           <SelectItem value="404">404</SelectItem>
         </SelectContent>
       </Select>
+      <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant={"outline"}
+          className={cn(
+            "w-[280px] justify-start text-left font-normal",
+            !date && "text-muted-foreground"
+          )}
+        >
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? format(new Date(date), 'dd/MM/yyyy') : <span>Filter a date</span>}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={handleSelectDate}
+          initialFocus
+        />
+      </PopoverContent>
+    </Popover>
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="ml-auto">
@@ -169,7 +195,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                Sem resultados
               </TableCell>
             </TableRow>
           )}

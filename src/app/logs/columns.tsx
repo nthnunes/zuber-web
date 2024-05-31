@@ -49,7 +49,7 @@ export const columns: ColumnDef<LogsTable>[] = [
     header: "status",
   },
   {
-    accessorKey: "date",
+    accessorKey: "dataFormatada",
     header: "date",
   },
   {
