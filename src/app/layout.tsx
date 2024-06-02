@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} overflow-hidden`}>
+      <body className={`${inter.className} `}>
         <ThemeProvider
         attribute="class"
         defaultTheme="system"
