@@ -44,7 +44,8 @@ const Login = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true)
-        fetch( `http://10.254.200.34:3001/dispositivos/${values.code}`)
+        // fetch( `http://10.254.200.34:3001/dispositivos/${values.code}`)
+        fetch( `http://localhost:3001/dispositivos/${values.code}`)
         .then(response => response.json())
         .then(data => {
          if(data.statusCode == 404){

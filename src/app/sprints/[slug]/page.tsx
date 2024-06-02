@@ -16,7 +16,8 @@ interface SprintsProps {
   };
 }
 const getData = async (values: string) => {
-  const res = await fetch(`http://10.254.200.34:3001/corrida/${values}`);
+  // const res = await fetch(`http://10.254.200.34:3001/corrida/${values}`);
+  const res = await fetch(`http://localhost:3001/corrida/${values}`);
   return res.json();
 };
 
