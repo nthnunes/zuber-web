@@ -83,7 +83,25 @@ export function DataTable<TData, TValue>({
     table.getColumn('dataFormatada')?.setFilterValue(format(new Date(value), 'dd/MM/yyyy'))
   }
   const handleSelectChange = (value : string) => {
-    table.getColumn('status')?.setFilterValue((old: [number, number]) => [value,value])
+    let range: [number, number];
+
+    switch (value) {
+      case "2xx":
+        range = [200, 299];
+        break;
+      case "3xx":
+        range = [300, 399];
+        break;
+      case "4xx":
+        range = [400, 499];
+        break;
+      case "5xx":
+        range = [500, 599];
+        break;
+      default:
+        range = [0, 999]; // default to all if no valid value is provided
+    }
+    table.getColumn('status')?.setFilterValue(range);
   };
   return (
     <>
@@ -101,13 +119,13 @@ export function DataTable<TData, TValue>({
           <SelectValue placeholder="Status" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="200">200</SelectItem>
-          <SelectItem value="201">201</SelectItem>
-          <SelectItem value="400">400</SelectItem>
-          <SelectItem value="404">404</SelectItem>
+          <SelectItem value="2xx">2xx</SelectItem>
+          <SelectItem value="3xx">3xx</SelectItem>
+          <SelectItem value="4xx">4xx</SelectItem>
+          <SelectItem value="5xx">5xx</SelectItem>
         </SelectContent>
       </Select>
-      <Popover>
+      {/* <Popover>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
@@ -128,7 +146,7 @@ export function DataTable<TData, TValue>({
           initialFocus
         />
       </PopoverContent>
-    </Popover>
+    </Popover> */}
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="ml-auto">
