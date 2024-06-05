@@ -27,11 +27,13 @@ import {
 } from "@/components/ui/popover"
 import { toast } from "@/components/ui/use-toast"
 import { CalendarIcon } from 'lucide-react';
+import ExportToExcelButton from '@/components/button-excel';
 interface FilterComponentProps {
   onFilterChange: (filter: string) => void;
+  data : any
 }
 
-const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : any) => {
+const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange,data } : any) => {
   const [filter, setFilter] = useState<any>('');
 
   const handleFilterChange = (data: z.infer<typeof FormSchema>) => {
@@ -54,7 +56,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex-col  flex items-center gap-4 sm:flex-row">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex-col  flex items-center gap-4 sm:flex-row md:flex-row md:w-fit">
         <FormField
           control={form.control}
           name="startDate"
@@ -139,7 +141,10 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
             </FormItem>
           )}
         />
-        <Button type="submit" className='self-end w-full sm:w-fit'>Filter</Button>
+        <div className='flex flex-col w-full sm:flex-row sm:w-fit md:flex-row md:w-fit gap-4 self-end'>
+          <Button type="submit" className='self-end w-full sm:w-fit'>Filter</Button>
+          <ExportToExcelButton data={data} filename={'logs'}/>
+        </div>
       </form>
     </Form>
   );

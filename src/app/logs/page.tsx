@@ -60,7 +60,8 @@ const Logs =  () => {
     return ( 
         <div className="container mx-auto py-10">
             <FilterComponent 
-            onFilterChange={handleFilterChange} 
+            onFilterChange={handleFilterChange}
+            data={data}
            />
             <DataTable columns={columns} data={data} />
         </div>
