@@ -6,6 +6,8 @@ import { format } from "date-fns";
 import FilterComponent from "./FilterComponent";
 import { useEffect, useState } from "react";
 import { getFilteredLogs, getLogs } from "../../../data/fetchLogs";
+import ExportToExcelButton from "@/components/button-excel";
+
 const Logs =  () => {
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState('');
@@ -58,11 +60,11 @@ const Logs =  () => {
       };
     
     return ( 
-        <div className="container mx-auto py-10">
+        <div className="container mx-auto py-10 flex flex-col gap-4 sm:gap-0">
             <FilterComponent 
             onFilterChange={handleFilterChange}
-            data={data}
            />
+           <ExportToExcelButton data={data} filename={'logs'}/>
             <DataTable columns={columns} data={data} />
         </div>
      );

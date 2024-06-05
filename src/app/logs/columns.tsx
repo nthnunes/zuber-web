@@ -42,7 +42,7 @@ export const columns: ColumnDef<LogsTable>[] = [
   },
   {
     accessorKey: "id",
-    header: () => <div className="text-right">Id</div>,
+    header: () => <div>Id</div>,
   },
   {
     accessorKey: "status",
@@ -57,6 +57,7 @@ export const columns: ColumnDef<LogsTable>[] = [
     header: "route",
   },
   {
+    accessorKey: "actions",
     id : "actions",
     cell: ({ row }) => {    
         const table_row = row.original

@@ -26,14 +26,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { toast } from "@/components/ui/use-toast"
-import { CalendarIcon } from 'lucide-react';
-import ExportToExcelButton from '@/components/button-excel';
+import { CalendarIcon, Filter } from 'lucide-react';
+
 interface FilterComponentProps {
   onFilterChange: (filter: string) => void;
-  data : any
 }
 
-const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange,data } : any) => {
+const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : any) => {
   const [filter, setFilter] = useState<any>('');
 
   const handleFilterChange = (data: z.infer<typeof FormSchema>) => {
@@ -142,8 +141,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange,data }
           )}
         />
         <div className='flex flex-col w-full sm:flex-row sm:w-fit md:flex-row md:w-fit gap-4 self-end'>
-          <Button type="submit" className='self-end w-full sm:w-fit'>Filter</Button>
-          <ExportToExcelButton data={data} filename={'logs'}/>
+          <Button type="submit" className='self-end w-full sm:w-fit p-4'><Filter size={"15"} className='m-1'/>Filter</Button>
         </div>
       </form>
     </Form>

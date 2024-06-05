@@ -1,6 +1,7 @@
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { Button } from '../ui/button';
+import { Sheet } from 'lucide-react';
 
 const ExportToExcelButton = ({ data, filename } : any) => {
   const exportToExcel = () => {
@@ -18,8 +19,8 @@ const ExportToExcelButton = ({ data, filename } : any) => {
   };
 
   return (
-    <Button onClick={exportToExcel} className='self-end w-full sm:w-fit'>
-      Excel
+    <Button onClick={exportToExcel} className='self-end w-full sm:w-fit p-4'>
+      <Sheet size={15} className='m-1' /> Excel
     </Button>
   );
 };
