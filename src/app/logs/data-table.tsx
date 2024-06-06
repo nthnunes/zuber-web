@@ -107,7 +107,7 @@ export function DataTable<TData, TValue>({
     <>
     <div className="flex items-center py-4 gap-4">
         <Input
-          placeholder="Filter routes..."
+          placeholder="Filtrar rota..."
           value={(table.getColumn("route")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("route")?.setFilterValue(event.target.value)
@@ -150,7 +150,7 @@ export function DataTable<TData, TValue>({
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="ml-auto">
-            Columns
+            Colunas
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">

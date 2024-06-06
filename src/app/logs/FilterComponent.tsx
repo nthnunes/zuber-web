@@ -61,7 +61,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
           name="startDate"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full sm:w-[240px]">
-              <FormLabel>Start date</FormLabel>
+              <FormLabel>Data início</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -75,7 +75,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
                       {field.value ? (
                         format(field.value, "dd/MM/yyyy")
                       ) : (
-                        <span>Pick a start date</span>
+                        <span>Selecione uma data início</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -103,7 +103,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
           name="endDate"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full sm:w-[240px]">
-              <FormLabel>End date</FormLabel>
+              <FormLabel>Data fim</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -117,7 +117,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
                       {field.value ? (
                         format(field.value, "dd/MM/yyyy")
                       ) : (
-                        <span>Pick a end date</span>
+                        <span>Selecione uma data fim</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -141,7 +141,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange } : an
           )}
         />
         <div className='flex flex-col w-full sm:flex-row sm:w-fit md:flex-row md:w-fit gap-4 self-end'>
-          <Button type="submit" className='self-end w-full sm:w-fit p-4'><Filter size={"15"} className='m-1'/>Filter</Button>
+          <Button type="submit" className='self-end w-full sm:w-fit p-4'><Filter size={"15"} className='m-1'/>Filtrar</Button>
         </div>
       </form>
     </Form>
